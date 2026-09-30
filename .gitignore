@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+
+# Data (downloaded from NIH, ~700MB — never commit)
+data/
+cell_images/
+*.zip
+
+# Experiment artifacts (regenerated; TensorBoard logs go to Drive)
+logs/
+artifacts/
+checkpoints/
+*.weights.h5
+*.h5
+tb_logs_export.zip
+
+# Notebooks
+.ipynb_checkpoints/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment / Secrets
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model weights (large files — use Drive instead)
+models/*.weights.h5
+models/*.h5
+models/*.keras
+
+# Colab / Jupyter local config
+.ipynb_checkpoints/
+*.ipynb.checkpoint
