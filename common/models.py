@@ -193,6 +193,7 @@ def build_transfer_model(backbone_name: str,
     Functional transfer-learning model: pretrained backbone (ImageNet) +
     GAP + Dense head. Backbones bring their own preprocessing layer so the
     pipeline stays raw-RGB end to end (avoids double-preprocessing bugs).
+    Supported: mobilenetv2 | mobilenetv3small | densenet121 | efficientnetb0.
 
     freeze_backbone=True gives the exp_01 frozen baseline; unfreezing for
     fine-tuning experiments is done afterwards in the notebooks by setting
@@ -208,6 +209,15 @@ def build_transfer_model(backbone_name: str,
             name="mobilenet_preprocess")
         base = MobileNetV2(include_top=False, weights="imagenet",
                            input_shape=(img_size[0], img_size[1], 3))
+    elif name in ("mobilenetv3small", "mobilenet_v3_small", "mobilenetv3"):
+        # Member 1's backbone (team decision). Keras' MobileNetV3 requires a
+        # minimum input size of 224 — verified in tests; use img_size=(224,224).
+        from tensorflow.keras.applications import MobileNetV3Small
+        prep = layers.Lambda(
+            lambda t: tf.keras.applications.mobilenet_v3.preprocess_input(t),
+            name="mobilenet_v3_preprocess")   # V3 mode is a pass-through (0-255 in)
+        base = MobileNetV3Small(include_top=False, weights="imagenet",
+                                input_shape=(img_size[0], img_size[1], 3))
     elif name in ("densenet121", "densenet"):
         from tensorflow.keras.applications import DenseNet121
         prep = layers.Lambda(

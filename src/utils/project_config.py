@@ -35,8 +35,8 @@ MODELS: dict[str, ModelConfig] = {
     "transfer_model_1": ModelConfig(
         name="Transfer Model 1",
         type="transfer_learning",
-        owner="TBD",
-        architecture="TBD",  # e.g., "MobileNetV2", "DenseNet121", "EfficientNetB0"
+        owner="Member 1",  # Group leader's own model
+        architecture="MobileNetV3Small",  # Team decision — Member 1 workstream
         notes="Pretrained backbone, frozen baseline → progressive unfreezing"
     ),
     "transfer_model_2": ModelConfig(
@@ -127,7 +127,7 @@ CLASS_LABELS: dict[int, str] = {
 
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).parents[3]  # malaria-cnn-formative-2/
+PROJECT_ROOT = Path(__file__).parents[2]  # malaria-cnn-formative-2/
 
 DEFAULT_LOGDIR = PROJECT_ROOT / "logs" / "tensorboard"
 DEFAULT_RESULTS_DIR = PROJECT_ROOT / "results"
