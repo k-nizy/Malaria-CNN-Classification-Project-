@@ -23,35 +23,36 @@ class ModelConfig:
     notes: str = ""
 
 
-# Dictionary of all 4 models — update owners when finalized
+# Dictionary of all 4 models — matches the group chat assignment.
+# Member 3 (Colombe) owns DenseNet121. Do not swap this with MobileNetV2.
 MODELS: dict[str, ModelConfig] = {
     "custom_resnet": ModelConfig(
         name="Custom ResNet",
         type="custom",
-        owner="Member 2",  # Current assignment
+        owner="Qevin",
         architecture="CustomResNet (Subclassing API)",
         notes="From-scratch ResNet with residual blocks, configurable width/depth"
     ),
     "transfer_model_1": ModelConfig(
         name="Transfer Model 1",
         type="transfer_learning",
-        owner="TBD",
-        architecture="TBD",  # e.g., "MobileNetV2", "DenseNet121", "EfficientNetB0"
-        notes="Pretrained backbone, frozen baseline → progressive unfreezing"
+        owner="Peggy",
+        architecture="MobileNetV2",
+        notes="Pretrained backbone, frozen baseline then progressive unfreezing"
     ),
     "transfer_model_2": ModelConfig(
         name="Transfer Model 2",
         type="transfer_learning",
-        owner="TBD",
-        architecture="TBD",  # Must be DIFFERENT from transfer_model_1
-        notes="Different architecture from Transfer Model 1 for meaningful comparison"
+        owner="Colombe",
+        architecture="DenseNet121",
+        notes="Different family from MobileNetV2: dense feature concatenation, fine-tuned"
     ),
     "custom_cnn": ModelConfig(
         name="Additional Custom CNN",
         type="custom",
-        owner="Member 4",  # Current assignment
-        architecture="TBD",  # Different from Custom ResNet
-        notes="From-scratch, Subclassing API, distinct architecture from Custom ResNet"
+        owner="Gabriella",
+        architecture="Inception-style multi-scale CNN (from scratch)",
+        notes="Hand-implemented, not a pretrained/library architecture, distinct from the ResNet"
     ),
 }
 

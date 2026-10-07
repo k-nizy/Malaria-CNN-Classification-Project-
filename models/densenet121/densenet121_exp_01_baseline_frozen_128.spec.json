@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "name": "baseline_frozen_128",
+  "img_size": [
+    128,
+    128
+  ],
+  "lr": 0.001,
+  "dropout": 0.3,
+  "l2": 0.0,
+  "augment": false,
+  "finetune": "frozen",
+  "note": "Frozen ImageNet trunk, new head only, 128px. Reference.",
+  "batch_size": 16,
+  "optimizer": "adam",
+  "weights": "imagenet"
+}

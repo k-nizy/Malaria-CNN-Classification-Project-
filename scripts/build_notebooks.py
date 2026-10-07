@@ -1129,14 +1129,9 @@ def main() -> int:
             "inverted residuals + linear bottlenecks: the cheapest backbone in "
             "the group (~3.5 M params), enabling more experiments per GPU-hour",
             MOBILENET_EXPERIMENTS, MOBILENET_EXP_TABLE),
-        build_transfer_notebook(
-            "03", "<MEMBER 3 NAME>", "densenet121",
-            "DenseNet121", "(assignment §3.3)", DENSENET_WHY,
-            "dense cross-depth feature concatenation gives multi-scale texture "
-            "cues for parasite staining — a deliberate family contrast to "
-            "MobileNetV2",
-            DENSENET_EXPERIMENTS, DENSENET_EXP_TABLE),
     ]
+    # Notebook 03 is Colombe's DenseNet121 notebook
+    # (notebooks/03_densenet121_member.ipynb). Do not regenerate it.
 
     failures: list[str] = []
     OUT_DIR.mkdir(exist_ok=True)

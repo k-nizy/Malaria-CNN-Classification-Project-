@@ -18,5 +18,5 @@ pillow>=10.0
 # Notebook Tooling (for build_notebooks.py)
 nbformat>=5.9
 
-# Optional: for experiment tracking (if using)
-# tensorboard>=2.13  # included with tensorflow
+# Experiment tracking. Not always bundled with the tensorflow wheel.
+tensorboard>=2.13
