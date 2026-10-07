@@ -15,8 +15,8 @@ scikit-learn>=1.3
 # Image Processing
 pillow>=10.0
 
-# Notebook Tooling (for build_notebooks.py)
+# Notebook Tooling
 nbformat>=5.9
 
-# Experiment tracking. Not always bundled with the tensorflow wheel.
+# Experiment tracking (explicit: tensorflow-cpu does not bundle it)
 tensorboard>=2.13

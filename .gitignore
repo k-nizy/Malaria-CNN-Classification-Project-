@@ -9,7 +9,8 @@ __pycache__/
 venv/
 
 # Data (downloaded from NIH, ~700MB — never commit)
-data/
+# NOTE: anchored to repo root so src/data/ (a real package) is NOT ignored.
+/data/
 cell_images/
 *.zip
 
@@ -46,3 +47,8 @@ models/*.keras
 # Colab / Jupyter local config
 .ipynb_checkpoints/
 *.ipynb.checkpoint
+
+# Local notebook-run artifacts (copies created when the notebook runs from member_1/)
+member_1/Malaria-CNN-Classification-Project-/
+member_1/common/
+member_1/src/

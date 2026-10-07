@@ -284,6 +284,27 @@ def test_transfer_model_builds_and_predicts():
     assert float(tf.reduce_min(y)) >= 0.0 and float(tf.reduce_max(y)) <= 1.0
 
 
+def test_mobilenetv3small_member_backbone():
+    """Member 1's backbone: builds at the V3-minimum 224, frozen by default,
+    preprocessing inside the graph, unfreezing works, raw 0-255 in -> sigmoid out."""
+    model = build_transfer_model("mobilenetv3small", img_size=(224, 224))
+    base = model._malaria_backbone
+    assert base.name.lower().startswith("mobilenetv3small")
+    assert not base.trainable                      # exp_01 frozen baseline
+    n_frozen = model.count_params()
+    assert n_frozen > 500_000                      # real pretrained backbone
+    # (V3Small minus top = 939,697 params — 'Small' is the point)
+    # preprocessing is part of the graph (raw 0-255 RGB in)
+    assert any("preprocess" in l.name for l in model.layers)
+    x = np.random.rand(2, 224, 224, 3).astype("float32") * 255
+    y = model(x, training=False)
+    assert y.shape == (2, 1)
+    assert float(tf.reduce_min(y)) >= 0.0 and float(tf.reduce_max(y)) <= 1.0
+    # fine-tuning lever works (exp_05+): unfreeze top 20, recompile-ready
+    unfreeze_top_n(model, n=20)
+    assert sum(1 for l in base.layers if l.trainable) >= 20
+
+
 def test_unfreeze_top_n(tmp_path):
     model = build_transfer_model("mobilenetv2", img_size=(96, 96))
     base = model._malaria_backbone
