@@ -1,0 +1,21 @@
+# We are on Windows (checkout CRLF by default). For the Member 1 deliverable
+# files that contain JSON/Python source, normalize to LF in the repo so the
+# notebook is parseable and the code is consistent across OSes. (Binary/pdf are
+# left untouched; they are not Member 1 deliverable text files.)
+
+# Notebook JSON must be LF so nbformat/nbconvert can parse it on any platform.
+*.ipynb text eol=lf
+
+# Python/source in member_1/ (Member 1's own copies) — LF in repo.
+member_1/**/*.py text eol=lf
+
+# Markdown report files — LF in repo.
+report/*.md text eol=lf
+
+# PDFs / binaries — do not touch line endings.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.h5 binary
+*.weights.h5 binary
